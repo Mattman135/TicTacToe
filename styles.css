@@ -27,22 +27,22 @@ body {
     width: 100px;
     height: 100px;
     background-color: white;
-    outline: solid 1px black;
+    outline: solid 1px grey;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .circle {
-    height: 90px;
-    width: 90px;
+    height: 80px;
+    width: 80px;
     border-radius: 50%;
     border: 15px solid grey;
 }
 
 .cross {
-    height: 90px;
-    width: 90px;
+    height: 80px;
+    width: 80px;
     position: relative;
     transform: rotate(45deg);
 }
