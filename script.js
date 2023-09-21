@@ -31,11 +31,13 @@ const Players = () => {
 }
 
 const Gameboard = (() => {
-    const gameBoard = document.querySelector('#gameboard');
-    const infoDisplay = document.querySelector('#info');
-    const cellElements = ["", "", "", "", "", "",  "", "",  ""];
 
-    
+    const infoDisplay = document.querySelector('#info');
+    const gameBoard = document.querySelector('#gameboard');
+    const cellElements = ["", "", "", "", "", "",  "", "",  ""];
+    let round = 1;
+    let go = "cross";
+    infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
 
     const createBoard = () => {
         cellElements.forEach((_cell, index) => {
@@ -43,14 +45,17 @@ const Gameboard = (() => {
             div.classList.add('square');
             div.id = index;
             div.addEventListener('click', addGo)
-            gameBoard.appendChild(div);
+            gameBoard.append(div);
         })
     }
 
     const addGo = (e) => {
         const div2 = document.createElement('div');
-        div2.classList.add('circle');
-        e.target.appendChild(div2);
+        div2.classList.add(go);
+        e.target.append(div2);
+        go = go === "circle" ? "cross" : "circle";
+        round++;
+        infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
         e.target.removeEventListener('click', addGo);
     }
 
@@ -59,11 +64,10 @@ const Gameboard = (() => {
 })();
 
 const displayController = (() => {
-
+    
     const playerX = Players().getSymbols().playerX;
     const playerO = Players().getSymbols().playerO;
-    const board = Gameboard.createBoard();
-    let round = 1;
-
+    const Board = Gameboard;
+    Board.createBoard();
 
 })();
