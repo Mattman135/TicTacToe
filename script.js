@@ -7,6 +7,16 @@
 - Gameboard object, innehålla board med alla celler för att kunna göra CSS, addEventlistener
 - behöver ett playGame objekt. Denna kör hela ronden, ända tills nån vinner förlorar?
 Behöver innehålla, players, vad dom klickar, updatera brädet, kolla vem som vinner,
+
+
+- N. 4: build the function that adds a symbol on the clicked cell
+ -addEventlistener "click"
+ -when one is clicked remove addEventlistener
+ -add class circle or cross
+  -shoudl be in createBoard
+ -need a round variable that checks who's turn it is, always start with X, even round print X not even print O. Use modulo.
+  -should be in displayController
+  -how do I make Gameboard inherit the round variable?
  */
 
 const Players = () => {
@@ -32,19 +42,28 @@ const Gameboard = (() => {
             const div = document.createElement('div');
             div.classList.add('square');
             div.id = index;
+            div.addEventListener('click', addGo)
             gameBoard.appendChild(div);
         })
     }
 
+    const addGo = (e) => {
+        const div2 = document.createElement('div');
+        div2.classList.add('circle');
+        e.target.appendChild(div2);
+        e.target.removeEventListener('click', addGo);
+    }
+
     return { createBoard }
+
 })();
 
 const displayController = (() => {
 
-    const players = Players();
-    const playerX = players.getSymbols().playerX;
-    const playerO = players.getSymbols().playerO;
+    const playerX = Players().getSymbols().playerX;
+    const playerO = Players().getSymbols().playerO;
     const board = Gameboard.createBoard();
+    let round = 1;
 
 
 })();
