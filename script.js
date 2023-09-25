@@ -35,9 +35,26 @@ const Gameboard = (() => {
     const infoDisplay = document.querySelector('#info');
     const gameBoard = document.querySelector('#gameboard');
     const cellElements = ["", "", "", "", "", "",  "", "",  ""];
+    const restartBtn = document.querySelector('#restartBtn');
+
     let round = 1;
     let go = "cross";
     infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
+
+
+    restartBtn.addEventListener('click', () => {
+        deleteBoard(gameBoard);
+        createBoard();
+        round = 0;
+        go = "cross";
+        infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
+    })
+
+    const deleteBoard = (parent) => {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
 
     const createBoard = () => {
         cellElements.forEach((_cell, index) => {
