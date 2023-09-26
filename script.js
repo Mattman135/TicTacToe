@@ -2,34 +2,6 @@
 // This will practice using factory functions and modules.
 "use strict";
 
-
-/*
-- Gameboard object, innehålla board med alla celler för att kunna göra CSS, addEventlistener
-- behöver ett playGame objekt. Denna kör hela ronden, ända tills nån vinner förlorar?
-Behöver innehålla, players, vad dom klickar, updatera brädet, kolla vem som vinner,
-
-
-- N. 4: build the function that adds a symbol on the clicked cell
- -addEventlistener "click"
- -when one is clicked remove addEventlistener
- -add class circle or cross
-  -shoudl be in createBoard
- -need a round variable that checks who's turn it is, always start with X, even round print X not even print O. Use modulo.
-  -should be in displayController
-  -how do I make Gameboard inherit the round variable?
- */
-
-const Players = () => {
-    this.playerX = "X";
-    this.playerO = "O";
-
-    const getSymbols = () => {
-        return { playerX, playerO };
-    }
-
-    return { getSymbols };
-}
-
 const Gameboard = (() => {
 
     const infoDisplay = document.querySelector('#info');
@@ -41,6 +13,18 @@ const Gameboard = (() => {
     let go = "cross";
     infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
 
+    const crossBtn = document.querySelector('#cross');
+    const circleBtn = document.querySelector('#circle');
+
+    crossBtn.addEventListener('click', () => {
+        go = "cross";
+        infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
+    })
+
+    circleBtn.addEventListener('click', () => {
+        go = 'circle';
+        infoDisplay.textContent = `It's round ${round} and ${go}'s turn`;
+    })
 
     restartBtn.addEventListener('click', () => {
         deleteBoard(gameBoard);
@@ -122,9 +106,7 @@ const Gameboard = (() => {
 })();
 
 const displayController = (() => {
-    
-    const playerX = Players().getSymbols().playerX;
-    const playerO = Players().getSymbols().playerO;
+
     const Board = Gameboard;
     Board.createBoard();
 
