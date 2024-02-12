@@ -1,4 +1,5 @@
-// This doesnt allow me to declare any global variables. However I can declare variables inside a factory or module.
+// This doesnt allow me to declare any global variables.
+// However, I can declare variables inside a factory or module.
 // This will practice using factory functions and modules.
 "use strict"
 
@@ -55,6 +56,7 @@ const Gameboard = (() => {
     e.target.append(div2)
     go = go === "circle" ? "cross" : "circle"
     round++
+
     infoDisplay.textContent = `It's round ${round} and ${go}'s turn`
     e.target.removeEventListener("click", addGo)
     checkWinner()
